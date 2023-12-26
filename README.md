@@ -4,8 +4,10 @@
 
 
 ## input:
-- n - number of bits
+- n - number of bits for code
+- Message with 1 at the end
 
 ## output: 
 
-- first n code strings
+- Alphabet
+- Code Message
