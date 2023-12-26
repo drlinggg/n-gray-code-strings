@@ -24,16 +24,42 @@ signed main() {
     cin >> n;
     ll number = pow(2,n);
     string array[number];
+    vector<char>saved;
+    vector<char>saved_uniq;
+    char c;
+    ll count = 0;
+    while (cin >> c) {
+        if (c == '1') {
+            break;
+        }
+        count++;
+        saved.push_back(c);
+        int flag = 0;
+        for (ll i = 0; i < saved_uniq.size(); i++) {
+            if (saved_uniq[i] == c) {
+                flag = 1;
+            }
+        }
+        if (flag == 0) {
+            saved_uniq.push_back(c);
+        }
+    }
     for (ll i = 0; i < number; i++) {
         array[i] = to_bin(i, n);
         for (ll j = 0; j < n-1; j++) {
             array[i][j] = (char) (((ll) (array[i][j] - '0')) ^ ((ll) (array[i][j+1] - '0'))) + '0';
         }
     }
-    for (ll i = 0; i < number; i++) {
+    for (ll i = 0; i < saved_uniq.size(); i++) {
         reverse(array[i].begin(), array[i].end());
-        cout << array[i] << '\n';
+        cout << saved_uniq[i] << ": " << array[i] << '\n';
+    }
+    for (ll i = 0; i < saved.size(); i++) {
+        for (ll j = 0; j < saved_uniq.size(); j++) {
+            if (saved_uniq[j] == saved[i]) {
+                cout << array[i];
+            }
+        }
     }
     return 0;
 }
-
